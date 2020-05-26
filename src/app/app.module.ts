@@ -14,6 +14,8 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 import { NgxDocViewerModule } from 'ngx-doc-viewer';
 import { DocviewerComponent } from './docviewer/docviewer.component';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { TextEditorComponent } from './text-editor/text-editor.component';
 
 
  
@@ -25,14 +27,16 @@ import { DocviewerComponent } from './docviewer/docviewer.component';
     LeftmenuComponent,
     ImageComponent,
     PdfComponent,
-    DocviewerComponent
+    DocviewerComponent,
+    TextEditorComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ImageViewerModule,
     PdfViewerModule,
-    NgxDocViewerModule
+    NgxDocViewerModule,
+    CKEditorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

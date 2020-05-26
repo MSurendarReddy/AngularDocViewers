@@ -13,11 +13,10 @@
         [show-borders]="true"
         [rotation]="0"
         [render-text-mode]="0"
-        [zoom]="0.5"
+        [zoom]="1.5"
 
         (after-load-complete)="callBackFn($event)"
-        (page-rendered)="pageRendered($event)"
-            style="display: block;">
+        (page-rendered)="pageRendered($event)" style="display: block;">
     </pdf-viewer>
    
     </div>
