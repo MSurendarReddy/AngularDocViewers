@@ -1,6 +1,6 @@
 <div class="list-group p-1 m-1 overflow-fixed leftNav">
 
-    <a routerLink="image" class="list-group-item list-group-item-action active"
+    <a routerLink="image" class="list-group-item list-group-item-action"
     [ngClass]="{'active': left===1}" (click)="onClick(1)">Image files ng2-image-viewer</a>
 
     <a href="pdf" class="list-group-item list-group-item-action"
@@ -12,5 +12,8 @@
     <a href="text" class="list-group-item list-group-item-action"
     [ngClass]="{'active': left===4}" (click)="onClick(4)">Text Editor</a>
 
-    <a href="#" class="list-group-item list-group-item-action disabled" tabindex="-1" aria-disabled="true">Dummy page</a>
+    <a href="excel" class="list-group-item list-group-item-action"
+    [ngClass]="{'active': left===5}" (click)="onClick(5)">Excel Editor</a>
+
+    
 </div>

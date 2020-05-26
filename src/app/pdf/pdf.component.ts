@@ -15,7 +15,7 @@ export class PdfComponent implements OnInit {
   ngOnInit(): void {
   }
   callBackFn(event) {
-    alert("event")
+    // alert("event")
   }
   pageRendered(event) {
     // alert("called for eventy page")

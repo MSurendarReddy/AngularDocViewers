@@ -16,6 +16,7 @@ import { NgxDocViewerModule } from 'ngx-doc-viewer';
 import { DocviewerComponent } from './docviewer/docviewer.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { TextEditorComponent } from './text-editor/text-editor.component';
+import { ExcelComponent } from './excel/excel.component';
 
 
  
@@ -28,7 +29,8 @@ import { TextEditorComponent } from './text-editor/text-editor.component';
     ImageComponent,
     PdfComponent,
     DocviewerComponent,
-    TextEditorComponent
+    TextEditorComponent,
+    ExcelComponent
   ],
   imports: [
     BrowserModule,
