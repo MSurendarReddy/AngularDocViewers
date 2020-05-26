@@ -24,7 +24,10 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/styles.css",
+              "node_modules/ng2-image-viewer/imageviewer.scss"
+              
             ],
             "scripts": []
           },
@@ -44,6 +47,8 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
+              "enableIvy": true,
+              "aot": false,
               "budgets": [
                 {
                   "type": "initial",

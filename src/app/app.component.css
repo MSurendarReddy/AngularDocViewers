@@ -1,0 +1,27 @@
+.imageclass{
+    height: 50px;
+}
+
+.mainDiv {
+    height: 100%;
+    overflow: block;
+    display: flex;
+    flex-direction: column;
+    background-color: #24233f;
+    border-radius: 10px;
+     /* overflow-y: auto; */
+   
+  }
+  .leftMenu{
+    height: 100%;
+    overflow: block;
+    display: flex;
+    flex-direction: column;
+    background-color: #24233f;
+    border-radius: 10px;
+     /* overflow-y: auto; */
+  }
+  .appBody{
+    height: 100%;
+    display: flexbox
+  }

@@ -1,0 +1,12 @@
+.leftNav{
+        height: 100%;
+        overflow: hidden;
+        display: fixed;
+        flex-direction: column;
+        background-color: #24233f;
+        border-radius: 10px;
+        
+       
+}
+
+

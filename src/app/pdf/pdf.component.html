@@ -1,0 +1,25 @@
+
+<div style="border: 1px solid red;">
+    <div class="row">
+        <button style="position: absolute; right: 10px; top: 12px;" (click)="download()">Download PDF</button>
+    </div>
+    <div class="row" style="width: 90%; padding-left: 10px;">
+        <pdf-viewer 
+        [src]="pdfSrc" 
+        [original-size]="false" 
+        [fit-to-page]="true" 
+        [autoresize]="true" 
+        [render-text]="true"
+        [show-borders]="true"
+        [rotation]="0"
+        [render-text-mode]="0"
+        [zoom]="0.5"
+
+        (after-load-complete)="callBackFn($event)"
+        (page-rendered)="pageRendered($event)"
+            style="display: block;">
+    </pdf-viewer>
+   
+    </div>
+    
+</div>
