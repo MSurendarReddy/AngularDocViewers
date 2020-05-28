@@ -1,2 +1,35 @@
+
 <p>text-editor works!</p>
-<ckeditor [editor]="Editor" data="<p>Hello, world!</p>"></ckeditor>
+<input type="file" (change)="onChange($event.target.files)">
+
+<div>
+    <h3>File Content</h3>
+    <pre> {{fileContent}} </pre>
+</div>
+<!-- <ckeditor [(ngModel)]="name" [config]="config" debounce="500"></ckeditor> -->
+<!-- <ckeditor [editor]="Editor" data="<p>Hello, world!</p>"></ckeditor> -->
+<!-- <ckeditor [editor]="Editor"  editorUrl="https://cdn.ckeditor.com/4.14.0/full/ckeditor.js"  [(ngModel)]="fileContent"></ckeditor> -->
+
+<!-- [config]="{ toolbar: [ 'heading', '|', 'bold', 'italic' ] }" -->
+
+<html lang="en">
+
+<!-- <head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Full Preset</title>
+  <script src="https://cdn.ckeditor.com/4.14.0/full/ckeditor.js"></script>
+</head> -->
+
+<body>
+  <!-- <ckeditor [editor]="Editor" (ready)="onReady($event)" [config]="editorConfig"  data="<p>Hello, world!</p>"></ckeditor> -->
+  <ckeditor [editor]="Editor" (ready)="onReady($event)"  [(ngModel)]="fileContent"></ckeditor>
+  <script>
+    CKEDITOR.replace('editor1', {
+      height: 400,
+       baseFloatZIndex: 9000
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,3 @@
+.jexcel tbody tr:nth-child(even) {
+    background-color: #EEE9F1 !important;
+  }

@@ -1,7 +1,28 @@
 <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="https://bossanova.uk/jsuites/v2/jsuites.css" type="text/css" />
-    <link rel="stylesheet" href="https://bossanova.uk/jexcel/v4/jexcel.css" type="text/css" />
-  </head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://bossanova.uk/jsuites/v2/jsuites.css" type="text/css" />
+  <link rel="stylesheet" href="https://bossanova.uk/jexcel/v4/jexcel.css" type="text/css" />
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.5/jszip.js"></script>
+  <script src="https://bossanova.uk/jexcel/v3/xlsx.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Material+Icons" />
+
+</head>
 
 <div class="container-fluid" id="spreadsheet"></div>
+<p><button id='download' (click)="downloadExcel()">Download</button></p>
+<p><button id='save' (click)="saveExcel()">Save</button></p>
+
+<ul class="list-group">
+  <li><a (click)="tableOperations(1)">Insert a new blank column at the end of the table</a></li>
+  <li><a onclick="table1.insertColumn(5, 0, 1, null);">Insert five new blank columns at the beginning of the table</a></li>
+  <li><a onclick="table1.insertColumn([ '0.99', '1.22', '3.11', '2.21' ]);">Insert a new column with pre-populated values at the end of the table</a></li>
+  <li><a onclick="table1.insertRow()">Insert a new blank row at the end of the table</a></li>
+  <li><a onclick="table1.insertRow([ 'Pears', 10, 0.59, '=B2*C2' ], 1);">Insert a new pre-populated row just after the second row</a></li>
+  <li><a onclick="table1.insertRow(10);">Create ten rows at the end of the table</a></li>
+  <li><a onclick="table1.deleteRow(0, 1);">Delete the first row</a></li>
+  <li><a onclick="table1.deleteColumn();">Delete the last column</a></li>
+  <li><a onclick="table1.moveRow(3, 0);">Move the forth row to the first position</a></li>
+  <li><a onclick="table1.moveColumn(0, 2);">Move the first column to the third position</a></li>
+</ul>
