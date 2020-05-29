@@ -29,7 +29,7 @@
               "node_modules/ng2-image-viewer/imageviewer.scss"
               
             ],
-            "scripts": []
+            "scripts": ["node_modules/mammoth/mammoth.browser.min.js"]
           },
           "configurations": {
             "production": {
@@ -95,7 +95,7 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": ["node_modules/mammoth/mammoth.browser.min.js"]
           }
         },
         "lint": {

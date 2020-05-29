@@ -15,9 +15,13 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { NgxDocViewerModule } from 'ngx-doc-viewer';
 import { DocviewerComponent } from './docviewer/docviewer.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
-import { TextEditorComponent } from './text-editor/text-editor.component';
+// import { CKEditorModule } from 'ng2-ckeditor';
+import {  TextEditorComponent1 } from './text-editor/text-editor.component';
 import { ExcelComponent } from './excel/excel.component';
 import { FormsModule } from '@angular/forms';
+import { TexteditorComponent } from './texteditor/texteditor.component';
+import { PagecontentComponent } from './pagecontent/pagecontent.component';
+import { DetailspostComponent } from './detailspost/detailspost.component';
 
 
  
@@ -30,8 +34,12 @@ import { FormsModule } from '@angular/forms';
     ImageComponent,
     PdfComponent,
     DocviewerComponent,
-    TextEditorComponent,
-    ExcelComponent
+    TextEditorComponent1,
+    TexteditorComponent,
+    ExcelComponent,
+    TexteditorComponent,
+    PagecontentComponent,
+    DetailspostComponent
   ],
   imports: [
     BrowserModule,

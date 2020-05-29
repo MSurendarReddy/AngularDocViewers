@@ -1,13 +1,10 @@
-
 <!-- You can now use your library component in app.component.html -->
 
 <!-- <app-image-viewer [images]="['https://images.nga.gov/en/web_images/niagara2.jpg']" [idContainer]="'idOnHTML'"
     [loadOnInit]="true"></app-image-viewer> -->
 
-
-<app-image-viewer 
-[images]=
-"['http://localhost:4200/assets/images/jpeg1.jpg',
+<div class="container-fluid pt-0">
+    <app-image-viewer [images]="['http://localhost:4200/assets/images/jpeg1.jpg',
 'http://localhost:4200/assets/images/jpeg2.jpg',
 'http://localhost:4200/assets/images/bmp1.BMP',
 'http://localhost:4200/assets/images/bmp2.BMP',
@@ -17,10 +14,9 @@
 'http://localhost:4200/assets/images/TIFF_2.tiff'
 
 
-]"
- [idContainer]="'idOnHTML'"
- [download]="true"
- [downloadTooltipLabel]="'Download'"
- [defaultDownloadName] ="'image'"
- [showPDFOnlyOption]="false"
-    [loadOnInit]="true"></app-image-viewer>
+]" [idContainer]="'idOnHTML'" [download]="true" [downloadTooltipLabel]="'Download'" [defaultDownloadName]="'image'"
+        [showPDFOnlyOption]="false" [loadOnInit]="true">
+
+    </app-image-viewer>
+
+</div>

@@ -9,7 +9,7 @@ import CKEDITOR from '@ckeditor/ckeditor5-build-classic';
   templateUrl: './text-editor.component.html',
   styleUrls: ['./text-editor.component.css']
 })
-export class TextEditorComponent implements OnInit {
+export class TextEditorComponent1 implements OnInit {
   @ViewChild('ckeditor', { static: true }) public ckeditorComponent: CKEditorComponent;
   public Editor = ClassicEditor;
   // public Editor = ClassicEditorWithAutosave

@@ -1,5 +1,4 @@
-
-<div style="border: 1px solid red;">
+<!-- <div style="border: 1px solid red;">
     <div class="row">
         <button style="position: absolute; right: 10px; top: 12px;" (click)="download()">Download PDF</button>
     </div>
@@ -21,4 +20,30 @@
    
     </div>
     
-</div>
+</div> -->
+
+
+<body [ngClass]="[move]">
+
+    <h1 style="margin-left:250px;">PDF Viewer</h1>
+    <div class="container">
+        <div class="pdf_icons">
+            <!-- <a href="../../assets/images/dhilip.pdf" download="sampletest" (click)="download()"><img src="../../assets/images/download.png"
+                    alt="download"></a> -->
+            <img src="../../assets/images/download.png" (click)="download()" alt="download">
+            <img src="../../assets/images/left_rotate.png" (click)="leftRotate()" alt="left_rotate">
+            <img src="../../assets/images/rit_rotate.png" (click)=ritRotate() alt="right_rotate">
+            <img src="../../assets/images/zoomout.png" (click)=zoomout() alt="zoom_out">
+            <img src="../../assets/images/zoomin.png" (click)=zoomin() alt="zoom_in">
+        </div>
+
+        <pdf-viewer [src]="pdfSrc" [render-text]="true" [zoom]=zoom [rotation]=rotation style="display: block;">
+        </pdf-viewer>
+
+    </div>
+
+    <div class="top_icon">
+        <img src="../../assets/images/top.png" (click)="movetoTop()" alt="top">
+    </div>
+
+</body>
