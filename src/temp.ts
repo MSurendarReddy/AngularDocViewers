@@ -1,44 +1,33 @@
-import { Component, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component, OnInit, Input, Output,EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'app-body',
-  templateUrl: './body.component.html',
-  styleUrls: ['./body.component.scss']
+  selector: 'lib-DocViewerLib',
+  template: `
+    <p>
+      <lib-common-doc-viewer   [(fileSrc)]="fileSrc" [fileType]="fileType" (print)="printFunction($event)"></lib-common-doc-viewer>
+    </p>
+  `,
+  styles: [
+  ]
 })
-export class BodyComponent implements OnInit {
+export class DocViewerLibComponent implements OnInit {
 
-  public fileSrc = ""
-  public fileType = ""
+  @Input() public fileSrc: string;
+  @Input() public fileType: string;
 
-  private paramsSub: Subscription;
+  @Output('print') print : EventEmitter<any> = new EventEmitter();
 
-  constructor(private router: Router, private activatedRouter: ActivatedRoute) { }
+  constructor() {
+    console.log("DocViewerLibComponent");
+  }
 
   ngOnInit(): void {
-    this.paramsSub = this.activatedRouter.params.subscribe(params => {
-      var name = params["name"];
-      this.fileType = params["type"];
-      // var ext = this.getExtension(name);
-      if (this.fileType == "image") {
-        this.fileSrc = `http://localhost:4200/assets/images/${name}`;
-      } else {
-        this.fileSrc = `http://localhost:4200/assets/pdf/${name}`;
-      }
-    });
+    console.log("DocViewerLibComponent fileSrc = ",this.fileSrc);
+    console.log("print  ngOnInit ",print)
   }
-
-  getExtension(filename) {
-    let ext = filename.split('.').pop();
-    console.log("ext", ext);
-    return ext;
-  }
-
-  ngOnDestroy() {
-    this.paramsSub.unsubscribe();
-  }
-  printCallbackFromHostApplication(event){
-   console.log("--------------printCallbackFromHostApplication----------------",event);
+  
+  printFunction(e){
+    console.log("-----------printFunction-- DocViewerLibComponent--------");
+    this.print.emit("test print");
   }
 }
