@@ -1,1 +1,1 @@
-
+ng generate library DocViewerLib
