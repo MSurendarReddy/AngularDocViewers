@@ -1,183 +1,103 @@
-import { Component, OnInit, Input, ViewChild, ViewContainerRef, ComponentFactoryResolver, Output, EventEmitter } from '@angular/core';
-import * as Tiff from 'tiff.js'
+import { Component, OnInit, Input, Output,EventEmitter } from '@angular/core';
+
 @Component({
-  selector: 'lib-common-doc-viewer',
-  templateUrl: './common-doc-viewer.component.html',
-  styleUrls: ['./common-doc-viewer.component.scss']
+  selector: 'lib-header',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.scss']
 })
-export class CommonDocViewerComponent implements OnInit {
+export class HeaderComponent implements OnInit {
 
-  @Input() public fileSrc: string;
-  @Input() public fileType: string;
+  @Output("parentFun") parentFun: EventEmitter<any> = new EventEmitter();
+  @Input() page = 1;
+  @Input() totalPages = 1;
+  @Input() showAll = 1;
+  @Input() type = "";
 
-  @Output('print') print: EventEmitter<any> = new EventEmitter();
-  @Output('download') download: EventEmitter<any> = new EventEmitter();
+  idContainer = "header"
+  rotate = true;
+  download = true;
+  fullscreen = true;
+  resetZoom = true;
+  loadOnInit = false;
+  showOptions = true;
+  zoomInButton = true;
+  zoomOutButton = true;
+  print = true;
+  enableTooltip = true;
+  showPDFOnlyOption = true;
 
-  @ViewChild('componentPlaceholder', { read: ViewContainerRef, static: true }) public componentPlaceholder: ViewContainerRef;
+  primaryColor = '#0176bd';
+  buttonsColor = 'white';
+  buttonsHover = '#333333';
+  defaultDownloadName = 'File';
+  rotateRightTooltipLabel = 'Rotate right';
+  rotateLeftTooltipLabel = 'Rotate left';
+  resetZoomTooltipLabel = 'Reset zoom';
+  fullscreenTooltipLabel = 'Fullscreen';
+  zoomInTooltipLabel = 'Zoom In';
+  zoomOutTooltipLabel = 'Zoom Out';
+  downloadTooltipLabel = 'Download';
+  showPDFOnlyLabel = 'Show only PDF';
+  openInNewTabTooltipLabel = 'Open in new tab';
+  printTooltipLabel = 'Print'
+  pdfQuery = ""
 
-  public extension: string;
-  public base64Data: string
-  public images: any[];
-
-  public pdfCompRef: any
-  public imageCompRef: any
-
-  constructor(private componentFactoryResolver: ComponentFactoryResolver) { }
+  constructor() { 
+    console.log("--------------HeaderComponent constructor--------------");
+  }
 
   ngOnInit(): void {
-  
-  }
-  ngAfterViewInit() {
-    if (this.fileType == "pdf") {
-      this.enrichPdfComponent()
-    } else {
-      this.enrichImageComponent()
-    }
   }
 
-  enrichImageComponent() {
-    if (this.isURlImage()) {
-      console.log("------------isURlImage------------");
-      this.extension = this.isFileExtenstion();
-      if (this.extension == "TIF" || this.extension == "tiff") {
-        this.convertTiffImageToPng(this.fileSrc);
-        console.log("this.fileSrc base64Data", this.fileSrc);
-        setTimeout(() => {
-          this.loadImageComponent();
-        }, 1000);
-      } else {
-        this.loadImageComponent()
-      }
-    } else {
-      this.loadImageComponent()
-    }
+  zoomIn() {
+    this.parentFun.emit({ operation: "zoomIn" });
   }
-
-  loadImageComponent() {
-    this.componentPlaceholder.clear();
-    import('../image/image.module').then(({ ImageModule }) => {
-      const MyComponent = ImageModule.getMyComponent();
-      const factory = this.componentFactoryResolver.resolveComponentFactory(MyComponent);
-      this.imageCompRef = this.componentPlaceholder.createComponent(factory);
-      console.log("this.fileSrc in loadImageComponent", this.fileSrc)
-      if (this.extension == "TIF" || this.extension == "tiff") {
-        this.images = [this.base64Data.replace(`data:image/png;base64,`, '')]
-      } else {
-        this.images = [this.fileSrc.replace(`data:image/png;base64,`, '')]
-      }
-
-      this.imageCompRef.instance.images = this.images;
-
-      this.imageCompRef.instance.print.subscribe((e) => {
-        this.printCommon(e);
-      });
-      this.imageCompRef.instance.download.subscribe((e) => {
-        this.downloadCommon(e);
-      });
-
-    });
+  zoomOut() {
+    this.parentFun.emit({ operation: "zoomOut" });
+  }
+  roteteRight() {
+    this.parentFun.emit({ operation: "roteteRight" });
+  }
+  roteteLeft() {
+    this.parentFun.emit({ operation: "roteteLeft" });
+  }
+  resetimageZoom() {
+    this.parentFun.emit({ operation: "resetimageZoom" });
+  }
+  fullImagescreen() {
 
   }
- 
-
-  enrichPdfComponent() {
-    this.loadPdfComponent()
+  fullScreen() {
+    this.parentFun.emit({ operation: "fullScreen" });
+  }
+  searchInPDF(newQuery: string) {
+    console.log(newQuery)
+    this.parentFun.emit({ operation: "searchInPDF", newQuery: newQuery });
+  }
+  incrementPage(amount: number) {
+    console.log("incrementPage")
+    this.parentFun.emit({ operation: "incrementPage", amount: amount });
   }
 
-  loadPdfComponent() {
-    this.componentPlaceholder.clear();
-    import('../pdf/pdf.module').then(({ PdfModule }) => {
-
-      const MyComponent = PdfModule.getMyComponent();
-      const factory = this.componentFactoryResolver.resolveComponentFactory(MyComponent);
-      this.pdfCompRef = this.componentPlaceholder.createComponent(factory);
-      this.pdfCompRef.instance.pdfSrc = this.fileSrc
-      // console.log('pdfCompRef', this.pdfCompRef)
-
-    });
-    // import('../pdf/pdf.module').then(({ PdfModule }) => {
-     
-    // });
-    // import('../pdf/pdf.component').then(({ PdfComponent }) => {
-
-    //   // const MyComponent = PdfModule.getMyComponent();
-    //   const factory = this.componentFactoryResolver.resolveComponentFactory(PdfComponent);
-    //   this.pdfCompRef = this.componentPlaceholder.createComponent(factory);
-    //   this.pdfCompRef.instance.pdfSrc = this.fileSrc
-    //   // console.log('pdfCompRef', this.pdfCompRef)
-
-    // });
+  downloadFile() {
+    console.log("downloadFile")
+    this.notifyGrandParent.emit('event')
+    this.parentFun.emit({ operation: "downloadFile" });
+  }
+  printFile() {
+    console.log("printFile")
+    this.notifyGrandParent.emit('event')
+    this.parentFun.emit({ operation: "printFile" });
+  }
+  pageSearch(event) {
+    console.log("pageSearch", event.target.value)
+    this.parentFun.emit({ operation: "pageSearch", pageNumber: event.target.value });
   }
 
-
-  isURlImage() {
-    return this.fileSrc.match(new RegExp(/^(https|http|www\.)/g));
+  @Output("hostFun") notifyGrandParent = new EventEmitter();
+  childEvent(event) {
+    console.log("test notify ")
+    this.notifyGrandParent.emit('event')
   }
-  isFileExtenstion() {
-    return this.fileSrc.match(new RegExp('[^.]+$'))[0];
-  }
-  convertTiffImageToPng(filename) {
-    // var base64DataTemp: string
-    var xhr = new XMLHttpRequest();
-    xhr.responseType = 'arraybuffer';
-    xhr.open('GET', filename);
-    // xhr.addEventListener('loadend', this.handleEvent);
-    xhr.onload = (e) => {
-      var tiff = new Tiff({ buffer: xhr.response });
-      var width = tiff.width();
-      var height = tiff.height();
-      var canvas = tiff.toCanvas();
-      if (canvas) {
-        canvas.setAttribute('style', 'width:' + (width * 0.3) +
-          'px; height: ' + (height * 0.3) + 'px ;display:none');
-        var elem = document.createElement("div");
-        document.body.append(elem);
-        document.body.append(canvas);
-        this.base64Data = canvas.toDataURL("image/png");
-        console.log("====", this.base64Data);
-        // this.base64Data = base64DataTemp
-      }
-    };
-    xhr.send();
-  }
-
-  ngOnDestroy() {
-    if (this.pdfCompRef) {
-      this.pdfCompRef.destroy();
-    }
-    if (this.imageCompRef) {
-      this.imageCompRef.destroy();
-    }
-  }
-
-  printCommon(e) {
-    console.log("--------------printCommon---------------------", e)
-    this.print.emit(e)
-  }
-  downloadCommon(e) {
-    console.log("--------------downloadCommon---------------------", e)
-    this.download.emit(e)
-  }
-
-}
-
-
-
-import { NgModule, ApplicationRef } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { PdfComponent } from '../pdf/pdf.component';
-import { ImageComponent } from '../image/image.component';
-
-@NgModule({
-  declarations: [],
-  imports: [
-    CommonModule
-  ], 
-  entryComponents: [PdfComponent,ImageComponent]
-  // exports:[HeaderModule,HeaderComponent]
-})
-export class CommonDocViewerModule { 
-
- 
 
 }
