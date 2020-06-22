@@ -1,17 +1,8 @@
-<lib-DocViewerLib  [(fileSrc)]="fileSrc" [fileType]="fileType" (print)="printCallbackFromHostApplication($event)">  </lib-DocViewerLib>
-
-
-
-<!-- <lib-DocViewerLib  [(fileSrc)]="fileSrc" [fileType]="fileType" >  </lib-DocViewerLib> -->
-
-<div class="container-fluid d-inline-flex">
-  <div class="container-fluid d-inline-flex ">
-   <div class="col-2" style="border-style: groove;">
-     <app-sidebar></app-sidebar>
-   </div>
-   <div class="col-10" style="border-style: groove;"> 
-     <!-- <app-body></app-body> -->
-     <router-outlet></router-outlet>
-   </div>
-  </div>
+<div class="container">
+    <lib-header [type]="'image'" (parentFun)="parentFun($event)">
+    </lib-header>
+    <app-image-viewer [images]="images" [idContainer]="'idOnHTML'" [download]="true" [downloadTooltipLabel]="'Download'"
+        [defaultDownloadName]="'image'" [showPDFOnlyOption]="false" [fullscreen]="true" [loadOnInit]="true"
+        [showOptions]="false">
+    </app-image-viewer>
 </div>
