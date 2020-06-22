@@ -3,3 +3,15 @@
 
 
 <!-- <lib-DocViewerLib  [(fileSrc)]="fileSrc" [fileType]="fileType" >  </lib-DocViewerLib> -->
+
+<div class="container-fluid d-inline-flex">
+  <div class="container-fluid d-inline-flex ">
+   <div class="col-2" style="border-style: groove;">
+     <app-sidebar></app-sidebar>
+   </div>
+   <div class="col-10" style="border-style: groove;"> 
+     <!-- <app-body></app-body> -->
+     <router-outlet></router-outlet>
+   </div>
+  </div>
+</div>
