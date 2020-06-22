@@ -1,51 +1,110 @@
-import { Component, OnInit, Input, Output,EventEmitter } from '@angular/core';
+import { Component, OnInit,ViewChild,EventEmitter, Output, Input } from '@angular/core';
+import { ImageViewerComponent } from 'ng2-image-viewer';
 
 @Component({
-  selector: 'lib-DocViewerLib',
-  template: `
-    <p>
-      <lib-common-doc-viewer   [(fileSrc)]="fileSrc" [fileType]="fileType" (print)="printFunction($event)"></lib-common-doc-viewer>
-    </p>
-  `,
-  styles: [
-  ]
+  selector: 'lib-image',
+  templateUrl: './image.component.html',
+  styleUrls: ['./image.component.scss']
 })
-export class DocViewerLibComponent implements OnInit {
+export class ImageComponent implements OnInit {
 
-  @Input() public fileSrc: string;
-  @Input() public fileType: string;
-
+  @ViewChild(ImageViewerComponent, { static: false }) private imageComponent: ImageViewerComponent;
+  
   @Output('print') print : EventEmitter<any> = new EventEmitter();
+  @Output('download') download : EventEmitter<any> = new EventEmitter();
+  @Input() public images: any[];
 
-  constructor() {
-    console.log("DocViewerLibComponent");
-  }
+  page = 1;
+  zoom: number;
+  rotation: number;
+
+  constructor() { }
 
   ngOnInit(): void {
-    console.log("DocViewerLibComponent fileSrc = ",this.fileSrc);
-    console.log("print  ngOnInit ",print)
+    this.zoom = 1;
+    this.rotation = 0;
   }
-  
-  
-  import { NgModule } from '@angular/core';
-import { DocViewerLibComponent } from './doc-viewer-lib.component';
-import { CommonDocViewerComponent } from './components/common-doc-viewer/common-doc-viewer.component';
-import { CommonDocViewerModule } from './components/common-doc-viewer/common-doc-viewer.module';
+
+  parentFun(type) {
+    // alert(type.operation);
+    // console.log("type", type.operation)
+    switch (type.operation) {
+      case 'zoomIn':
+        console.log("zoom in")
+        this.imageComponent.zoomIn();
+        // this.zoomIn();
+        break;
+      case 'zoomOut':
+        // this.zoomOut();
+        this.imageComponent.zoomOut();
+        break;
+      case 'roteteRight':
+        this.imageComponent.rotacionarDireita();
+        break;
+      case 'roteteLeft':
+        this.imageComponent.rotacionarEsquerda();
+        break;
+      case 'resetimageZoom':
+        this.imageComponent.resetarZoom();
+        break;
+      case 'downloadFile':
+        this.downloadFile();
+        break;
+      case 'searchInPDF':
+        // this.searchInPDF(type.newQuery);
+        break;
+      case 'incrementPage':
+        // this.incrementPage(type.amount);
+        break;
+      case 'fullScreen':
+        this.imageComponent.mostrarFullscreen();
+        break;
+      case 'printFile':
+        this.printFile();
+        break;
+      default:
+        alert("invalid operation");
+        alert(type.operation)
+
+    }
+  }
+
+  downloadFile() {
+
+    var link = document.createElement('a');
+    link.href = '' + this.images[0];
+    link.download = 'Download.png';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    this.download.emit('download')
+  }
+  printFile() {
+    window.print();
+    this.print.emit('print file');
+  }
+
+}
 
 
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ImageComponent } from './image.component';
+import { ImageViewerModule } from 'ng2-image-viewer';
+import { HeaderModule } from '../header/header.module';
 
 @NgModule({
-  declarations: [DocViewerLibComponent, CommonDocViewerComponent],
+  declarations: [ImageComponent],
   imports: [
-    CommonDocViewerModule
-  ],
-  exports: [DocViewerLibComponent]
+    CommonModule,
+    ImageViewerModule,
+    HeaderModule
+  ]
+  // entryComponents: [ImageComponent]
 })
-export class DocViewerLibModule { }
-
-  
-  printFunction(e){
-    console.log("-----------printFunction-- DocViewerLibComponent--------");
-    this.print.emit("test print");
+export class ImageModule {
+  static getMyComponent() {
+    return ImageComponent
   }
 }
