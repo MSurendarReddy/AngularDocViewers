@@ -26,6 +26,24 @@ export class DocViewerLibComponent implements OnInit {
     console.log("print  ngOnInit ",print)
   }
   
+  
+  import { NgModule } from '@angular/core';
+import { DocViewerLibComponent } from './doc-viewer-lib.component';
+import { CommonDocViewerComponent } from './components/common-doc-viewer/common-doc-viewer.component';
+import { CommonDocViewerModule } from './components/common-doc-viewer/common-doc-viewer.module';
+
+
+
+@NgModule({
+  declarations: [DocViewerLibComponent, CommonDocViewerComponent],
+  imports: [
+    CommonDocViewerModule
+  ],
+  exports: [DocViewerLibComponent]
+})
+export class DocViewerLibModule { }
+
+  
   printFunction(e){
     console.log("-----------printFunction-- DocViewerLibComponent--------");
     this.print.emit("test print");
