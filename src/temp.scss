@@ -1,0 +1,99 @@
+.footer-icon {
+    font-size: xx-large;
+    margin-top:0px !important;
+  }
+ 
+  .image-viewer-tooltip {
+    position: relative;
+    display: inline-block;
+    z-index: 1000;
+  }
+ 
+  .image-viewer-tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 40%;
+    margin-left: -66px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+ 
+  .image-viewer-tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+  }
+ 
+  .image-viewer-tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+  }
+  .image-gallery-header {
+    width: 100%;
+    position: relative;
+    background: #000;
+    margin-top: 45px;
+    background-color: rgb(1, 118, 189);
+  }
+  .inline-icon{
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    float: left;
+    padding-left: 5px;
+    width: 100%;
+    margin-top: -45px;
+    background-color:#0176bd;    
+  }
+ 
+.options-image-viewer{
+    visibility:inherit;
+    height: 50px;
+    
+   }
+
+.pdf_icons_with_search
+{
+    position:absolute;
+    right:10px;
+    top:10px;
+}
+
+.search_box
+{
+   display:inline-block;
+   width:500px;
+   margin-top:5px;
+   margin-bottom:5px;
+}
+
+.searchbox-header 
+{
+    border: 1px;
+    padding: 8px;
+    background-color: white;
+}
+
+.pagination_nav
+{
+    display:inline-block;
+    position:absolute;
+    top:10px;
+}
