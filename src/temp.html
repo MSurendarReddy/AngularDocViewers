@@ -1,8 +1,4 @@
-<div class="container">
-    <lib-header [type]="'image'" (parentFun)="parentFun($event)">
-    </lib-header>
-    <app-image-viewer [images]="images" [idContainer]="'idOnHTML'" [download]="true" [downloadTooltipLabel]="'Download'"
-        [defaultDownloadName]="'image'" [showPDFOnlyOption]="false" [fullscreen]="true" [loadOnInit]="true"
-        [showOptions]="false">
-    </app-image-viewer>
+<div class="container-fluid">
+    <div #componentPlaceholder>
+    </div>
 </div>
