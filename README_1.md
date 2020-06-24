@@ -1,2 +1,6 @@
-ng generate library DocViewerLib
-const routes: Routes = [{path:'images/:type/:name',component:BodyComponent},{path:'pdf/:type/:name',component:BodyComponent}];
+    const blob = this.pdfSrc;
+    let filepdf = 'data:application/pdf,' + blob;
+    let a = document.createElement('a');
+    a.href = filepdf;
+    a.download = 'downloadPdf';
+    a.click();
