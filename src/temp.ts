@@ -210,7 +210,3 @@ pinToHeader()
   }
 
 
-Thanks
-Dhilip Kumar V
-90922 90265
-t
